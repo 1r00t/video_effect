@@ -1,3 +1,28 @@
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+
+def mapp(value, in_min, in_max, out_min, out_max):
+    """
+    Maps an input value in a given range (in_min, in_max)
+    to an output range (out_min, out_max) and returns it as float.
+    usage:
+        >>> mapp(20, 10, 30, 0, 100)
+        <<< 50.0
+    """
+
+    value = float(value)
+    in_min = float(in_min)
+    in_max = float(in_max)
+    out_min = float(out_min)
+    out_max = float(out_max)
+    in_range = in_max - in_min
+    out_range = out_max - out_min
+
+    return (value - in_min) * (out_range / in_range) + out_min
+
+
 def hsv_to_rgb(h, s, v):
     if s == 0.0:
         v *= 255

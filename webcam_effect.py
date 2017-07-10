@@ -1,8 +1,7 @@
 import pygame
 import cv2
 import numpy as np
-from Mapp import mapp
-from colors import get_c
+from colors import *
 
 
 pygame.init()
@@ -14,10 +13,8 @@ w_size = w_width, w_height = (
     int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
 screen = pygame.display.set_mode(w_size)
-pygame.display.set_caption("test")
+pygame.display.set_caption("Kachel Effect")
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
 num_colors = 100
 coll = list(reversed(get_c(num_colors)))
 

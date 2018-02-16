@@ -15,6 +15,7 @@ print(w_size)
 
 screen = pygame.display.set_mode(w_size)
 pygame.display.set_caption("webcam effect")
+pygame.mouse.set_visible(False)
 
 num_colors = 100
 colors = utils.get_colors(num_colors)

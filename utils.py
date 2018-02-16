@@ -48,6 +48,6 @@ def hsv_to_rgb(h, s, v):
 
 def get_colors(n):
     c = []
-    for i in range(0, 360, 360 / n):
+    for i in range(0, 360, 360 // n):
         c.append(list(hsv_to_rgb(i / 360., 1, 1)))
     return c

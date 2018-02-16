@@ -12,7 +12,7 @@ w_size = w_width, w_height = (
     int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
     int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
-print w_size
+print(w_size)
 
 screen = pygame.display.set_mode(w_size)
 pygame.display.set_caption("Kachel Effect")

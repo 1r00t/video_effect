@@ -5,13 +5,12 @@ import utils
 
 pygame.init()
 
-cap = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(0)
 
 w_size = w_width, w_height = (
-    int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
-    int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+    int(camera.get(cv2.CAP_PROP_FRAME_WIDTH)),
+    int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT)))
 
-print(w_size)
 
 screen = pygame.display.set_mode(w_size)
 pygame.display.set_caption("webcam effect")
@@ -41,7 +40,7 @@ while running:
 
     screen.fill(utils.BLACK)
 
-    ret, frame = cap.read()
+    ret, frame = camera.read()
     frame = np.rot90(frame)
     frame = cv2.resize(frame, None, fx=frame_width, fy=frame_height)
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -62,5 +61,5 @@ while running:
 
     pygame.display.flip()
 
-cap.release()
+camera.release()
 cv2.destroyAllWindows()

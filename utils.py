@@ -46,8 +46,9 @@ def hsv_to_rgb(h, s, v):
         return [v, p, q]
 
 
-def get_colors(n):
-    c = []
-    for i in range(0, 360, 360 // n):
-        c.append(hsv_to_rgb(i / 360., 1, 1))
-    return reversed(c)
+def get_colors(count):
+    colors = []
+    for i in range(0, 360, 360 // count):
+        colors.append(hsv_to_rgb(i / 360, 1, 1))
+    colors.reverse()
+    return colors

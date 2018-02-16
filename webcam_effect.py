@@ -14,7 +14,7 @@ w_size = w_width, w_height = (
 print(w_size)
 
 screen = pygame.display.set_mode(w_size)
-pygame.display.set_caption("Kachel Effect")
+pygame.display.set_caption("webcam effect")
 
 num_colors = 100
 colors = utils.get_colors(num_colors)
@@ -32,9 +32,11 @@ while running:
             if event.key == pygame.K_LEFT and frame_width < 0.2:
                 frame_width += scale
                 frame_height += scale
-            if event.key == pygame.K_RIGHT and frame_width > 0.02:
+            elif event.key == pygame.K_RIGHT and frame_width > 0.02:
                 frame_width -= scale
                 frame_height -= scale
+            elif event.key == pygame.K_ESCAPE:
+                running = False
 
     screen.fill(utils.BLACK)
 

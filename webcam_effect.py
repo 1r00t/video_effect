@@ -51,12 +51,12 @@ while running:
     for x, row in enumerate(frame):
         for y, cell in enumerate(row):
             brightness = (int(cell[0]) + int(cell[1]) + int(cell[2])) / 3
-            rw = utils.map_value(brightness, 0, 255, 0, cell_w)
-            rh = utils.map_value(brightness, 0, 255, 0, cell_h)
+            rw = utils.rescale(brightness, 0, 255, 0, cell_w)
+            rh = utils.rescale(brightness, 0, 255, 0, cell_h)
             rx = x * cell_w + ((cell_w - rw) / 2)
             ry = y * cell_h + ((cell_h - rh) / 2)
             size = rw * rh
-            c = int(utils.map_value(size, 0, cell_w * cell_h, 0, num_colors))
+            c = int(utils.rescale(size, 0, cell_w * cell_h, 0, num_colors))
             pygame.draw.rect(screen, colors[c], (rx, ry, rw, rh))
 
     pygame.display.flip()

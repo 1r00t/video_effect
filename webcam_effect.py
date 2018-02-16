@@ -67,7 +67,7 @@ while running:
     screen.fill(utils.BLACK)
 
     frame = capture_frame()
-    f_width, f_height, f_chan = [float(s) for s in frame.shape]
+    f_width, f_height, f_chan = frame.shape
     cell_w = w_width / f_width
     cell_h = w_height / f_height
 

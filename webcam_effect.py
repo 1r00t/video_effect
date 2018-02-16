@@ -33,10 +33,10 @@ def calculate_cell_parameters(cell_info):
     return width, height
 
 
-def draw_cell(cell_info):
+def draw_cell(cell_info, position):
     rw, rh = calculate_cell_parameters(cell_info)
-    rx = x * cell_w + ((cell_w - rw) / 2)
-    ry = y * cell_h + ((cell_h - rh) / 2)
+    rx = position[0] * cell_w + ((cell_w - rw) / 2)
+    ry = position[1] * cell_h + ((cell_h - rh) / 2)
     size = rw * rh
     c = int(utils.rescale(size, 0, cell_w * cell_h, 0, num_colors))
     pygame.draw.rect(screen, colors[c], (rx, ry, rw, rh))
@@ -44,10 +44,11 @@ def draw_cell(cell_info):
 
 def capture_frame():
     success, image = camera.read()
-    image = np.rot90(image)
-    image = cv2.resize(image, None, fx=width_factor, fy=height_factor)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    return image
+    if success:
+        image = np.rot90(image)
+        image = cv2.resize(image, None, fx=width_factor, fy=height_factor)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        return image
 
 
 while running:
@@ -73,7 +74,7 @@ while running:
 
     for x, row in enumerate(frame):
         for y, cell in enumerate(row):
-            draw_cell(cell)
+            draw_cell(cell, (x, y))
 
     pygame.display.flip()
 

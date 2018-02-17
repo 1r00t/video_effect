@@ -44,11 +44,12 @@ def draw_cell(cell_info, position):
 
 def capture_frame():
     success, image = camera.read()
-    if success:
-        image = np.rot90(image)
-        image = cv2.resize(image, None, fx=width_factor, fy=height_factor)
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        return image
+    if not success:
+        raise RuntimeError('Could not read image from camera.')
+    image = np.rot90(image)
+    image = cv2.resize(image, None, fx=width_factor, fy=height_factor)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return image
 
 
 while running:

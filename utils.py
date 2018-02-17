@@ -19,7 +19,7 @@ def rescale(value, in_min, in_max, out_min, out_max):
     return (value - in_min) * (out_range / in_range) + out_min
 
 
-def get_colors(count):
+def generate_palette(count):
     colors = []
     for i in range(0, 360, 360 // count):
         rgb = colorsys.hsv_to_rgb(i / 360, 1, 1)

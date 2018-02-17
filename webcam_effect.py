@@ -17,7 +17,7 @@ pygame.display.set_caption("webcam effect")
 pygame.mouse.set_visible(False)
 
 num_colors = 100
-colors = utils.get_colors(num_colors)
+colors = utils.generate_palette(num_colors)
 
 width_factor = 0.1
 height_factor = 0.1

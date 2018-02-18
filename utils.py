@@ -1,8 +1,5 @@
 import colorsys
 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-
 
 def rescale(value, in_min, in_max, out_min, out_max):
     """

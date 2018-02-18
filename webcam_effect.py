@@ -21,9 +21,8 @@ pygame.mouse.set_visible(False)
 num_colors = 100
 colors = utils.generate_palette(num_colors)
 
-width_factor = 0.1
-height_factor = 0.1
-scale = 0.01
+scale = 0.1
+scale_stepping = 0.01
 
 running = True
 
@@ -49,9 +48,18 @@ def capture_frame():
     if not success:
         raise RuntimeError('Could not read image from camera.')
     image = np.rot90(image)
-    image = cv2.resize(image, None, fx=width_factor, fy=height_factor)
+    image = cv2.resize(image, None, fx=scale, fy=scale)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     return image
+
+
+def change_scale(key, scale):
+    new_scale = scale
+    if key == pygame.K_LEFT and scale < 0.2:
+        new_scale += scale_stepping
+    elif key == pygame.K_RIGHT and scale > 0.02:
+        new_scale -= scale_stepping
+    return new_scale
 
 
 while running:
@@ -59,13 +67,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT and width_factor < 0.2:
-                width_factor += scale
-                height_factor += scale
-            elif event.key == pygame.K_RIGHT and width_factor > 0.02:
-                width_factor -= scale
-                height_factor -= scale
-            elif event.key == pygame.K_ESCAPE:
+            scale = change_scale(event.key, scale)
+            if event.key == pygame.K_ESCAPE:
                 running = False
 
     screen.fill(pygame.color.THECOLORS['black'])

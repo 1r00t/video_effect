@@ -66,7 +66,7 @@ while running:
             elif event.key == pygame.K_ESCAPE:
                 running = False
 
-    screen.fill(utils.BLACK)
+    screen.fill(pygame.color.THECOLORS['black'])
 
     frame = capture_frame()
     f_width, f_height, f_chan = frame.shape

@@ -72,7 +72,7 @@ while running:
     screen.fill(pygame.color.THECOLORS['black'])
 
     frame = capture_frame()
-    f_width, f_height, f_chan = frame.shape
+    f_width, f_height = frame.shape[:2]
     cell_w = screen_width / f_width
     cell_h = screen_height / f_height
 

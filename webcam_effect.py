@@ -10,10 +10,9 @@ camera = cv2.VideoCapture(0)
 screen_mode = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.FULLSCREEN
 
 screen = pygame.display.set_mode((0, 0), screen_mode)
-screen_info = pygame.display.Info()
 screen_width, screen_height = (
-    screen_info.current_w,
-    screen_info.current_h
+    pygame.display.Info().current_w,
+    pygame.display.Info().current_h
 )
 
 pygame.display.set_caption("webcam effect")

@@ -7,12 +7,15 @@ pygame.init()
 
 camera = cv2.VideoCapture(0)
 
-w_size = w_width, w_height = (
-    int(camera.get(cv2.CAP_PROP_FRAME_WIDTH)),
-    int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+screen_mode = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.FULLSCREEN
 
+screen = pygame.display.set_mode((0, 0), screen_mode)
+screen_info = pygame.display.Info()
+screen_width, screen_height = (
+    screen_info.current_w,
+    screen_info.current_h
+)
 
-screen = pygame.display.set_mode(w_size)
 pygame.display.set_caption("webcam effect")
 pygame.mouse.set_visible(False)
 
@@ -70,8 +73,8 @@ while running:
 
     frame = capture_frame()
     f_width, f_height, f_chan = frame.shape
-    cell_w = w_width / f_width
-    cell_h = w_height / f_height
+    cell_w = screen_width / f_width
+    cell_h = screen_height / f_height
 
     for x, row in enumerate(frame):
         for y, cell in enumerate(row):
